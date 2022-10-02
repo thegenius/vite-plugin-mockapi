@@ -2,9 +2,9 @@
 
 ---
 
-# vite-plugin-mix
+# vite-plugin-mockapi
 
-[![npm version](https://badgen.net/npm/v/vite-plugin-mix)](https://npm.im/vite-plugin-mix)
+This is a plugin origin fork from vite-plugin-mix
 
 ## Motivation
 
@@ -13,7 +13,7 @@ Writing front-end and back-end API in a single project allows faster development
 ## Install
 
 ```bash
-npm i vite-plugin-mix -D
+npm i vite-plugin-mockapi -D
 ```
 
 ## Usage
@@ -22,7 +22,7 @@ npm i vite-plugin-mix -D
 
 ```ts
 import { defineConfig } from 'vite'
-import mix from 'vite-plugin-mix'
+import mockapi from 'vite-plugin-mockapi'
 
 export default defineConfig({
   plugins: [
@@ -36,7 +36,7 @@ export default defineConfig({
 `handler.ts`:
 
 ```ts
-import type { Handler } from 'vite-plugin-mix'
+import type { Handler } from 'vite-plugin-mockapi'
 
 export const handler: Handler = (req, res, next) => {
   if (req.path === '/hello') {
@@ -66,26 +66,6 @@ Now `vite build` will create a server build to `./build` folder alongside your r
 By default the server is built for Node.js target, you can run `node build/server.js` after `vite build` to start the production server.
 
 By default the server runs at port `3000`, you can switch to a custom port by using the `PORT` environment variable.
-
-### Vercel
-
-To build for [Vercel](https://vercel.com), use the `vercelAdapter` in `vite.config.ts`:
-
-```ts
-import { defineConfig } from 'vite'
-import mix, { vercelAdapter } from 'vite-plugin-mix'
-
-export default defineConfig({
-  plugins: [
-    mix({
-      handler: './handler.ts',
-      adapter: vercelAdapter(),
-    }),
-  ],
-})
-```
-
-Then you can run `vite build` to build for Vercel.
 
 ## Guide
 
