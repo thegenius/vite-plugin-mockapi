@@ -26,7 +26,7 @@ import mockapi from 'vite-plugin-mockapi'
 
 export default defineConfig({
   plugins: [
-    mix({
+    mockapi.default({
       handler: './handler.ts',
     }),
   ],
