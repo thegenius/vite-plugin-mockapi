@@ -58,56 +58,56 @@ export default ({
       })
     },
 
-    async writeBundle() {
-      if (process.env.MIX_SSR_BUILD) return
+    // async writeBundle() {
+    //   if (process.env.MIX_SSR_BUILD) return
 
-      process.env.MIX_SSR_BUILD = 'true'
+    //   process.env.MIX_SSR_BUILD = 'true'
 
-      adapter = adapter || nodeAdapter()
+    //   adapter = adapter || nodeAdapter()
 
-      const serverOutDir = path.join(root, 'build')
+    //   const serverOutDir = path.join(root, 'build')
 
-      const handlerFile = getHandlerFile()
+    //   const handlerFile = getHandlerFile()
 
-      const buildOpts = { root, serverOutDir, clientOutDir: clientOutDir! }
+    //   const buildOpts = { root, serverOutDir, clientOutDir: clientOutDir! }
 
-      if (adapter.buildStart) {
-        await adapter.buildStart(buildOpts)
-      }
+    //   if (adapter.buildStart) {
+    //     await adapter.buildStart(buildOpts)
+    //   }
 
-      const indexHtmlPath = path.join(clientOutDir!, 'index.html')
-      const indexHtml = fs.readFileSync(indexHtmlPath, 'utf8')
-      fs.unlinkSync(indexHtmlPath)
+    //   const indexHtmlPath = path.join(clientOutDir!, 'index.html')
+    //   const indexHtml = fs.readFileSync(indexHtmlPath, 'utf8')
+    //   fs.unlinkSync(indexHtmlPath)
 
-      await build({
-        root,
-        resolve: {
-          alias: {
-            $handler_file: handlerFile,
-          },
-        },
-        define: {
-          'import.meta.env.MIX_CLIENT_DIR': JSON.stringify(
-            path.relative(process.cwd(), clientOutDir!),
-          ),
-          'import.meta.env.MIX_HTML': JSON.stringify(indexHtml),
-        },
-        build: {
-          outDir: serverOutDir,
-          emptyOutDir: true,
-          ssr: true,
-          rollupOptions: {
-            input: {
-              handler: handlerFile,
-              ...adapter.rollupInput,
-            },
-          },
-        },
-      })
+    //   await build ({
+    //     root,
+    //     resolve: {
+    //       alias: {
+    //         $handler_file: handlerFile,
+    //       },
+    //     },
+    //     define: {
+    //       'import.meta.env.MIX_CLIENT_DIR': JSON.stringify(
+    //         path.relative(process.cwd(), clientOutDir!),
+    //       ),
+    //       'import.meta.env.MIX_HTML': JSON.stringify(indexHtml),
+    //     },
+    //     build: {
+    //       outDir: serverOutDir,
+    //       emptyOutDir: true,
+    //       ssr: true,
+    //       rollupOptions: {
+    //         input: {
+    //           handler: handlerFile,
+    //           ...adapter.rollupInput,
+    //         },
+    //       },
+    //     },
+    //   })
 
-      if (adapter.buildEnd) {
-        await adapter.buildEnd(buildOpts)
-      }
-    },
+    //   if (adapter.buildEnd) {
+    //     await adapter.buildEnd(buildOpts)
+    //   }
+    // },
   }
 }

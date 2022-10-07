@@ -1,6 +1,6 @@
 {
   "name": "vite-plugin-mockapi",
-  "version": "0.1.1",
+  "version": "0.2.0",
   "description": "plugin for vite mock api",
   "publishConfig": {
     "access": "public"
