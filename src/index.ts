@@ -1,6 +1,8 @@
-import fs from 'fs'
+// import fs from 'fs'
 import path from 'path'
-import { Plugin, build } from 'vite'
+import { Plugin } from 'vite'
+// import {build} from 'vite';
+
 import polka from 'polka'
 import { nodeAdapter } from './adapters/node'
 import { Adapter } from './types'
@@ -19,7 +21,7 @@ export default ({
   adapter?: Adapter
 }): Plugin => {
   let root = process.cwd()
-  let clientOutDir: string | undefined
+  // let clientOutDir: string | undefined
 
   const getHandlerFile = () => path.resolve(root, handler)
 
@@ -28,7 +30,7 @@ export default ({
 
     configResolved(config) {
       root = config.root
-      clientOutDir = path.resolve(root, config.build.outDir)
+      // clientOutDir = path.resolve(root, config.build.outDir)
     },
 
     configureServer(devServer) {
